@@ -23,7 +23,7 @@ def buildRoute(start_addr,end_addr):
     clean_start_addr = cleanInput(start_addr)
     logger.debug(f'[trans_id: {trans_id}, clean_start_addr: {clean_start_addr}')
     clean_end_addr = cleanInput(end_addr)
-    logger.debug(f'[trans_id: {trans_id}, clean_start_addr: {clean_end_addr}')
+    logger.debug(f'[trans_id: {trans_id}, clean_end_addr: {clean_end_addr}')
 
     # call /ts-geo/route
     message = call_ts_geo(clean_start_addr,clean_end_addr,trans_id)
@@ -33,7 +33,7 @@ def buildRoute(start_addr,end_addr):
     if message['status'] == 'OK':
         weather_data = call_ts_weather(message['data']['geo_spacers'],trans_id)
     else:
-
+        logger.debug('adding for some reason...')
 
     return message
 

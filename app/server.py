@@ -36,7 +36,7 @@ app.add_api('swagger.yml')
 @app.route('/')
 def home():
     """
-        This functio responds to localhost:4080/
+        This function responds to localhost:4080/
     """
 
     json_str = {"app_name":APP_NAME,"app_version":APP_VERSION}
