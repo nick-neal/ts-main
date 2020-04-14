@@ -1,0 +1,141 @@
+2019-11-16 17:32:50,578 INFO werkzeug MainThread :  * Running on http://0.0.0.0:4080/ (Press CTRL+C to quit)
+2019-11-16 17:32:50,579 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:32:51,617 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:32:51,624 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:33:26,285 INFO werkzeug MainThread :  * Running on http://0.0.0.0:4080/ (Press CTRL+C to quit)
+2019-11-16 17:33:26,286 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:33:27,320 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:33:27,327 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:39:07,557 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 17:39:07,613 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:39:08,647 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:39:08,654 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:39:14,566 INFO werkzeug MainThread :  * Running on http://0.0.0.0:4080/ (Press CTRL+C to quit)
+2019-11-16 17:39:14,567 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:39:15,565 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:39:15,572 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:39:39,800 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Nov/2019 17:39:39] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 200 -
+2019-11-16 17:41:03,568 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 17:41:03,624 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:41:04,642 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:41:04,649 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:41:10,067 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Nov/2019 17:41:10] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 500 -
+2019-11-16 17:41:48,450 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 17:41:48,510 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:41:49,525 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:41:49,532 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:41:54,140 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Nov/2019 17:41:54] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 500 -
+2019-11-16 17:43:05,948 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 17:43:06,016 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:44:05,524 INFO werkzeug MainThread :  * Running on http://0.0.0.0:4080/ (Press CTRL+C to quit)
+2019-11-16 17:44:05,525 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:44:06,555 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:44:06,561 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:44:10,688 DEBUG address Thread-2 : Calling https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Gruner+Weg+6+611&=&key=AIzaSyBJ_1nmtDNa2hQwGkVZSnYl1rsQ_Q-ox3Y&sessiontoken=49f03b9421b8a9e1a90aa10fe0e13c6c
+2019-11-16 17:44:10,904 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Nov/2019 17:44:10] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 200 -
+2019-11-16 17:46:32,280 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 17:46:32,337 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:46:33,343 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:46:33,349 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:46:39,480 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 17:46:39,536 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:46:40,557 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:46:40,563 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:46:46,807 DEBUG address Thread-2 : Calling /maps/api/place/autocomplete [session: 49f03b9421b8a9e1a90aa10fe0e13c6c
+2019-11-16 17:46:47,321 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Nov/2019 17:46:47] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 200 -
+2019-11-16 17:47:06,046 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 17:47:06,098 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:47:07,151 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:47:07,158 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:49:42,985 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 17:49:43,045 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 17:49:44,061 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 17:49:44,068 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 17:49:48,549 DEBUG address Thread-2 : Calling /maps/api/place/autocomplete [session: 49f03b9421b8a9e1a90aa10fe0e13c6c]
+2019-11-16 17:49:48,873 DEBUG address Thread-2 : [session: 49f03b9421b8a9e1a90aa10fe0e13c6c, status: OK]
+2019-11-16 17:49:48,874 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Nov/2019 17:49:48] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 200 -
+2019-11-16 18:06:31,562 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 18:06:31,614 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:06:32,634 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:06:32,642 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 18:06:45,899 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 18:06:45,957 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:06:46,980 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:06:46,987 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 18:07:13,486 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 18:07:13,543 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:07:14,553 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:07:14,560 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 18:07:33,930 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 18:07:33,988 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:07:35,002 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:07:35,008 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 18:07:38,079 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 18:07:38,133 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:07:39,149 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:07:39,156 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 18:07:46,027 INFO address Thread-2 : Calling /maps/api/place/autocomplete [session: 40952fe9fbbdc8854a345e312dc11ed8]
+2019-11-16 18:07:46,493 INFO address Thread-2 : [session: 40952fe9fbbdc8854a345e312dc11ed8, status: OK]
+2019-11-16 18:07:46,494 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Nov/2019 18:07:46] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 200 -
+2019-11-16 18:08:10,727 INFO address Thread-3 : Calling /maps/api/place/autocomplete [session: 40952fe9fbbdc8854a345e312dc11ed8]
+2019-11-16 18:08:10,732 ERROR address Thread-3 : Error occured for [session: 40952fe9fbbdc8854a345e312dc11ed8]: HTTPSConnectionPool(host='maps.googleapis.com', port=443): Max retries exceeded with url: /maps/api/place/autocomplete/json?input=Gruner+Weg+6+611&=&key=AIzaSyBJ_1nmtDNa2hQwGkVZSnYl1rsQ_Q-ox3Y&sessiontoken=40952fe9fbbdc8854a345e312dc11ed8 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x10bced050>: Failed to establish a new connection: [Errno 8] nodename nor servname provided, or not known'))
+2019-11-16 18:08:10,733 INFO werkzeug Thread-3 : 127.0.0.1 - - [16/Nov/2019 18:08:10] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 200 -
+2019-11-16 18:09:09,693 INFO address Thread-4 : Calling /maps/api/place/autocomplete [session: 40952fe9fbbdc8854a345e312dc11ed8]
+2019-11-16 18:09:15,911 INFO address Thread-4 : [session: 40952fe9fbbdc8854a345e312dc11ed8, status: OK]
+2019-11-16 18:09:15,912 INFO werkzeug Thread-4 : 127.0.0.1 - - [16/Nov/2019 18:09:15] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 200 -
+2019-11-16 18:10:01,746 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 18:10:01,804 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:10:02,862 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:10:02,869 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 18:13:16,445 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 18:13:16,500 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:13:17,527 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:13:17,534 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 18:13:24,444 DEBUG address Thread-2 : addr = Gruner Weg 6 611&=
+2019-11-16 18:13:24,444 DEBUG address Thread-2 : clean_addr = Gruner+Weg+6+611&=
+2019-11-16 18:13:24,445 INFO address Thread-2 : Calling /maps/api/place/autocomplete API [session: 0cb66f29b7af442b2d36369c6dd44088]
+2019-11-16 18:13:24,913 INFO address Thread-2 : [session: 0cb66f29b7af442b2d36369c6dd44088, status: OK]
+2019-11-16 18:13:24,914 DEBUG address Thread-2 : message = {'addr': 'Gruner+Weg+6+611&=', 'session': '0cb66f29b7af442b2d36369c6dd44088', 'status': 'OK', 'addresses': ['Grüner Weg 6, 61169 Friedberg, Germany', 'Grüner Weg 6, 61118 Bad Vilbel, Germany', 'Grüner Weg 6, 61191 Rosbach vor der Höhe, Germany', 'Grüner Weg 6, 61130 Nidderau, Germany']}
+2019-11-16 18:13:24,914 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Nov/2019 18:13:24] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 200 -
+2019-11-16 18:15:36,057 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 18:15:36,112 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:15:37,135 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:15:37,142 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 18:15:42,555 DEBUG address Thread-2 : addr = Gruner Weg 6 611&= [session: 0cb66f29b7af442b2d36369c6dd44088]
+2019-11-16 18:15:42,555 DEBUG address Thread-2 : clean_addr = Gruner+Weg+6+611&= [session: 0cb66f29b7af442b2d36369c6dd44088]
+2019-11-16 18:15:42,555 INFO address Thread-2 : Calling /maps/api/place/autocomplete API [session: 0cb66f29b7af442b2d36369c6dd44088]
+2019-11-16 18:15:42,719 INFO address Thread-2 : [session: 0cb66f29b7af442b2d36369c6dd44088, status: OK]
+2019-11-16 18:15:42,720 DEBUG address Thread-2 : message = {'addr': 'Gruner+Weg+6+611&=', 'session': '0cb66f29b7af442b2d36369c6dd44088', 'status': 'OK', 'addresses': ['Grüner Weg 6, 61169 Friedberg, Germany', 'Grüner Weg 6, 61118 Bad Vilbel, Germany', 'Grüner Weg 6, 61191 Rosbach vor der Höhe, Germany', 'Grüner Weg 6, 61130 Nidderau, Germany']}
+2019-11-16 18:15:42,721 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Nov/2019 18:15:42] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 200 -
+2019-11-16 18:17:19,072 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 18:17:19,130 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:17:20,157 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:17:20,164 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 18:17:37,366 DEBUG address Thread-2 : [addr: Gruner Weg 6 611&=] [session: 0cb66f29b7af442b2d36369c6dd44088]
+2019-11-16 18:17:37,366 DEBUG address Thread-2 : [clean_addr: Gruner+Weg+6+611&=] [session: 0cb66f29b7af442b2d36369c6dd44088]
+2019-11-16 18:17:37,366 INFO address Thread-2 : Calling /maps/api/place/autocomplete API [session: 0cb66f29b7af442b2d36369c6dd44088]
+2019-11-16 18:17:37,594 INFO address Thread-2 : [session: 0cb66f29b7af442b2d36369c6dd44088, status: OK]
+2019-11-16 18:17:37,594 DEBUG address Thread-2 : [message: {'addr': 'Gruner+Weg+6+611&=', 'session': '0cb66f29b7af442b2d36369c6dd44088', 'status': 'OK', 'addresses': ['Grüner Weg 6, 61169 Friedberg, Germany', 'Grüner Weg 6, 61118 Bad Vilbel, Germany', 'Grüner Weg 6, 61191 Rosbach vor der Höhe, Germany', 'Grüner Weg 6, 61130 Nidderau, Germany']}] [session: 0cb66f29b7af442b2d36369c6dd44088]
+2019-11-16 18:17:37,595 INFO werkzeug Thread-2 : 127.0.0.1 - - [16/Nov/2019 18:17:37] "GET /ts-main/address/autocomplete/Gruner%20Weg%206%20611&= HTTP/1.1" 200 -
+2019-11-16 18:30:36,278 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/address.py', reloading
+2019-11-16 18:30:36,337 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:30:37,370 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:30:37,377 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 18:31:31,374 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/route.py', reloading
+2019-11-16 18:31:31,431 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 18:31:32,461 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 18:31:32,468 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 20:19:51,015 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/server.py', reloading
+2019-11-16 20:19:51,070 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 20:19:52,157 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 20:19:52,165 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 22:19:23,511 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/route.py', reloading
+2019-11-16 22:19:23,569 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 22:19:24,696 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 22:19:24,705 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 22:19:37,955 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/route.py', reloading
+2019-11-16 22:19:38,014 INFO werkzeug MainThread :  * Restarting with stat
+2019-11-16 22:19:39,045 WARNING werkzeug MainThread :  * Debugger is active!
+2019-11-16 22:19:39,052 INFO werkzeug MainThread :  * Debugger PIN: 288-125-890
+2019-11-16 23:53:25,281 INFO werkzeug MainThread :  * Detected change in '/Volumes/R1_Storage/Projects/travelstorms.com/ts-main/route.py', reloading
+2019-11-16 23:53:25,336 INFO werkzeug MainThread :  * Restarting with stat
