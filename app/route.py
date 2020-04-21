@@ -36,7 +36,7 @@ def buildRoute(start_addr,end_addr):
     if message['status'] == 'OK':
         for i in message['data']['geo_spacers']:
             tmp_weather.append(call_ts_weather(i[0],i[1],trans_id))
-        weather_data['data']['weather_data'] = parseWeatherData(tmp_weather, trans_id)
+        message['data']['weather_data'] = parseWeatherData(tmp_weather, trans_id)
     else:
         logger.error(f'There was an issue retrieving data from /ts-geo/route API [trans_id: {trans_id}]')
 
