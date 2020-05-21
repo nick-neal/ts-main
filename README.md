@@ -236,3 +236,5 @@ status | String | "OK" means the application was able to complete the request wi
 - [ ] optimize gunicorn settings for prod
 - [ ] set up SSL
 - [ ] set up mutual authentication
+- [ ] create config file to store API keys
+- [ ] create config files for webapp settings (request timeout, port, etc...)
