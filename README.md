@@ -28,7 +28,9 @@ This will stop the running container.
 This will purge the docker registry of this container.
 
 ## API
-The api will be located at *http://127.0.0.1:4082/ts-main*
+For app name and version, query *http://127.0.0.1:4080/*
+
+The api will be located at *http://127.0.0.1:4080/ts-main*
 
 **In order for this API to function properly, you will need to also be running the ts-geo & ts-weather containers as well.**
 
