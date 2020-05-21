@@ -8,7 +8,7 @@ build:
 	docker build -t $(IMAGE_NAME) .
 
 run:
-	docker run --rm -p 4080:4080 --name $(CONTAINER_NAME) $(IMAGE_NAME)
+	docker run --rm -p 4080:4080 -e PORT="4080" --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
 inspect:
 	docker exec -it $(CONTAINER_NAME) /bin/sh
