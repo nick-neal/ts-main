@@ -234,6 +234,7 @@ status | String | "OK" means the application was able to complete the request wi
 ## Tasks
 - [x] configure app to run on gunicorn
 - [ ] optimize gunicorn settings for prod
+- [ ] fix logging since gunicorn doesn't use logging class
 - [ ] set up SSL
 - [ ] set up mutual authentication
 - [ ] create config file to store API keys
