@@ -6,6 +6,21 @@ This is the main micro service that will handle client requests for TravelStorms
 
 You will need to have ts-geo and ts-weather running to use ts-main, as it relies on the services to collect results for the client request.  
 
+## setting up API KEYS
+Due to security, you will need to create a new file: `app/config/tskeys.py`
+
+add the following to the new file:
+
+```
+from config.tsconfig import APP_ENV
+
+### API KEYS ###
+
+if APP_ENV == "DEV":
+    G_PLACES_API_KEY = '<Google Maps Places API Key>'
+
+```
+
 ## Running in docker
 
 **You will need docker installed on your computer to run the code**

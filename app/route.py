@@ -5,13 +5,10 @@ import hashlib
 import datetime
 from requests.exceptions import HTTPError
 import base64
+from config.tsurls import TS_GEO_URL, TS_WEATHER_URL
 
 # initialize logger for app
 logger = logging.getLogger(__name__)
-
-#set constants
-TS_GEO_URL='http://172.17.0.3:4081/ts-geo/route'
-TS_WEATHER_URL='http://172.17.0.4:4082/ts-weather/routeForcast'
 
 # main function used for API endpoint /ts-main/route/{start_addr}/{end_addr}
 def buildRoute(start_addr,end_addr):

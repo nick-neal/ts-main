@@ -1,14 +1,9 @@
 import connexion
 import os
+import sys
 import config
 from logging.config import fileConfig
-
-# Set app info
-APP_NAME = "ts-main"
-APP_VERSION = "ALPHA 19.11.0"
-APP_HOST = '0.0.0.0'
-APP_PORT = 4080
-APP_DEBUG = True
+from config.tsconfig import *
 
 # create application instance
 app = connexion.App(__name__, specification_dir="./")
@@ -39,7 +34,7 @@ def home():
         This function responds to localhost:4080/
     """
 
-    json_str = {"app_name":APP_NAME,"app_version":APP_VERSION}
+    json_str = {"app_name":APP_NAME,"app_version":APP_VERSION,"app_env":APP_ENV}
     return json_str
 
 # if running in standalone mode

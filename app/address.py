@@ -4,14 +4,11 @@ from requests.exceptions import HTTPError
 import datetime
 import hashlib
 import logging
+from config.tsurls import GOOGLE_URL
+from config.tskeys import G_PLACES_API_KEY
 
 # initialize logger for app
 logger = logging.getLogger(__name__)
-
-# set constant vars
-GOOGLE_URL = 'https://maps.googleapis.com'
-# !!! SETUP IN CONFIG !!!
-G_PLACES_API_KEY = 'AIzaSyBJ_1nmtDNa2hQwGkVZSnYl1rsQ_Q-ox3Y'
 
 # main function used for API endpoint /ts-main/address/autocomplete/{addr}
 def autocomplete(addr):
