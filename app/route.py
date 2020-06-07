@@ -5,7 +5,6 @@ import hashlib
 import datetime
 from requests.exceptions import HTTPError, ConnectTimeout, ReadTimeout, SSLError
 import base64
-from circuitbreaker import circuit
 from config.tsurls import TS_GEO_URL, TS_WEATHER_URL
 from config.tsconfig import HTTP_CONNECT_TIMEOUT, HTTP_READ_TIMEOUT
 
@@ -48,7 +47,6 @@ def buildRoute(start_addr,end_addr):
 def cleanInput(addr):
     return addr.strip().replace(" ","+")
 
-@circuit
 def call_ts_geo(start_addr,end_addr,trans_id):
     message = {}
     message['status'] = 'EMPTY'
