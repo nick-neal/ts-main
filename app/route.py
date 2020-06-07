@@ -1,14 +1,21 @@
-from flask import request
+from flask import request, abort, make_response, jsonify
 import logging
 import requests
 import hashlib
 import datetime
-from requests.exceptions import HTTPError
+from requests.exceptions import HTTPError, ConnectTimeout, ReadTimeout, SSLError
 import base64
+from circuitbreaker import circuit
 from config.tsurls import TS_GEO_URL, TS_WEATHER_URL
+from config.tsconfig import HTTP_CONNECT_TIMEOUT, HTTP_READ_TIMEOUT
 
 # initialize logger for app
 logger = logging.getLogger(__name__)
+
+# store URL params
+START_TIME = None # this will be the start of the trip # DEFAULT current time
+REST_HOUR = None # this will be the amount of hours to stop driving # DEFAULT 12
+REST_DURATION = None # this will be the duration of the rest period. # DEFAULT 12
 
 # main function used for API endpoint /ts-main/route/{start_addr}/{end_addr}
 def buildRoute(start_addr,end_addr):
@@ -23,42 +30,56 @@ def buildRoute(start_addr,end_addr):
     clean_end_addr = cleanInput(end_addr)
     logger.debug(f'[trans_id: {trans_id}, clean_end_addr: {clean_end_addr}')
 
+    # initialize message variable
+    message = None
+
     # call /ts-geo/route
     message = call_ts_geo(clean_start_addr,clean_end_addr,trans_id)
 
-    # if status = ok, cal /ts-weather/grabRouteForcast post
-
-    #message['data']['weather_data'] = []
+    # grab weather data for geo_spacers
     tmp_weather = []
-    if message['status'] == 'OK':
-        for i in message['data']['geo_spacers']:
-            tmp_weather.append(call_ts_weather(i[0],i[1],trans_id))
-        message['data']['weather_data'] = parseWeatherData(tmp_weather, trans_id)
-    else:
-        logger.error(f'There was an issue retrieving data from /ts-geo/route API [trans_id: {trans_id}]')
+    for i in message['data']['geo_spacers']:
+        tmp_weather.append(call_ts_weather(i[0],i[1],trans_id))
+
+    message['data']['weather_data'] = parseWeatherData(tmp_weather, trans_id)
 
     return message
 
 def cleanInput(addr):
     return addr.strip().replace(" ","+")
 
+@circuit
 def call_ts_geo(start_addr,end_addr,trans_id):
     message = {}
     message['status'] = 'EMPTY'
     if start_addr != "" and end_addr != "":
         full_url = f'{TS_GEO_URL}/{start_addr}/{end_addr}/{trans_id}'
-
-        logger.info(f'Calling /ts-geo/route API [trans_id: {trans_id}]')
+        service = "/ts-geo/route"
+        logger.info(f'Calling {service} API [trans_id: {trans_id}]')
         response = ''
 
         try:
-            response = requests.get(full_url)
+            response = requests.get(url=full_url, timeout=(HTTP_CONNECT_TIMEOUT, HTTP_READ_TIMEOUT))
         except HTTPError as http_err:
-            logger.error(f'HTTP error occured for [trans_id: {trans_id}]: {http_err}')
-            message['status'] = "HTTP_ERROR"
+            logger.error(f'HTTP error occured on {service} [trans_id: {trans_id}]: {http_err}')
+            eres = jsonify(status="ERROR", error_code="HTTP_ERROR", error_message="There was an HTTP_ERROR on the server side.")
+            abort(make_response(eres,500))
+        except SSLError as ssl_err:
+            logger.error(f'SSL error occured on {service} [trans_id: {trans_id}]: {ssl_err}')
+            eres = jsonify(status="ERROR", error_code="SSL_ERROR", error_message="There was an SSL_ERROR on the server side.")
+            abort(make_response(eres,500))
+        except ConnectTimeout as ct:
+            logger.error(f'Connection Timeout occured on {service} [trans_id: {trans_id}]: {ct}')
+            eres = jsonify(status="ERROR", error_code="HTTP_CONNECT_TIMEOUT", error_message="The server was unable to make an HTTP connection.")
+            abort(make_response(eres,500))
+        except ReadTimeout as rt:
+            logger.error(f'Read Timeout occured on {service} [trans_id: {trans_id}]: {rt}')
+            eres = jsonify(status="ERROR", error_code="HTTP_READ_TIMEOUT", error_message="The server took too long to respond.")
+            abort(make_response(eres,500))
         except Exception as err:
-            logger.error(f'Error occured for [trans_id: {trans_id}]: {err}')
-            message['status'] = "UNKNOWN_ERROR"
+            logger.error(f'Error occured on {service} [trans_id: {trans_id}]: {err}')
+            eres = jsonify(status="ERROR", error_code="UNKNOWN_ERROR", error_message="An unknown error occured on the server side.")
+            abort(make_response(eres,500))
         else:
             if response.status_code == 200:
                 message = response.json()
@@ -70,25 +91,33 @@ def call_ts_weather(lat,lon,trans_id):
     message = {}
     message['status'] = 'EMPTY'
     full_url = f'{TS_WEATHER_URL}/{lat}/{lon}/{trans_id}'
+    service = "/ts-weather/routeForecast"
+    logger.info(f'Calling {service} API [trans_id: {trans_id}]')
 
-    logger.info(f'Calling /ts-weather/routeForecast API [trans_id: {trans_id}]')
-    #b64_geo_list = stringToBase64(geo_list)
-
-    '''
-    data = {'geo_list': b64_geo_list,
-            'trans_id': trans_id
-            }
-    '''
     response = ''
 
     try:
-        response = requests.get(url=full_url)
+        response = requests.get(url=full_url, timeout=(HTTP_CONNECT_TIMEOUT, HTTP_READ_TIMEOUT))
     except HTTPError as http_err:
-        logger.error(f'HTTP error occured for [trans_id: {trans_id}]: {http_err}')
-        message['status'] = "HTTP_ERROR"
+        logger.error(f'HTTP error occured on {service} [trans_id: {trans_id}]: {http_err}')
+        eres = jsonify(status="ERROR", error_code="HTTP_ERROR", error_message="There was an HTTP_ERROR on the server side.")
+        abort(make_response(eres,500))
+    except SSLError as ssl_err:
+        logger.error(f'SSL error occured on {service} [trans_id: {trans_id}]: {ssl_err}')
+        eres = jsonify(status="ERROR", error_code="SSL_ERROR", error_message="There was an SSL_ERROR on the server side.")
+        abort(make_response(eres,500))
+    except ConnectTimeout as ct:
+        logger.error(f'Connection Timeout occured on {service} [trans_id: {trans_id}]: {ct}')
+        eres = jsonify(status="ERROR", error_code="HTTP_CONNECT_TIMEOUT", error_message="The server was unable to make an HTTP connection.")
+        abort(make_response(eres,500))
+    except ReadTimeout as rt:
+        logger.error(f'Read Timeout occured on {service} [trans_id: {trans_id}]: {rt}')
+        eres = jsonify(status="ERROR", error_code="HTTP_READ_TIMEOUT", error_message="The server took too long to respond.")
+        abort(make_response(eres,500))
     except Exception as err:
-        logger.error(f'Error occured for [trans_id: {trans_id}]: {err}')
-        message['status'] = "UNKNOWN_ERROR"
+        logger.error(f'Error occured on {service} [trans_id: {trans_id}]: {err}')
+        eres = jsonify(status="ERROR", error_code="UNKNOWN_ERROR", error_message="An unknown error occured on the server side.")
+        abort(make_response(eres,500))
     else:
         if response.status_code == 200:
             message = response.json()
@@ -97,26 +126,24 @@ def call_ts_weather(lat,lon,trans_id):
     return message
 
 def parseWeatherData(tmp_data, trans_id):
-    check_good = True
     weather_data = []
+    # for i in tmp_data:
+    #     if i['status'] != 'OK':
+    #         check_good = False
+    #         logger.error(f'There was a bad response sent back from /ts-weather/routeForcast API [trans_id: {trans_id}]')
+    #         break
+    #
+    count = 0
     for i in tmp_data:
-        if i['status'] != 'OK':
-            check_good = False
-            logger.error(f'There was a bad response sent back from /ts-weather/routeForcast API [trans_id: {trans_id}]')
-            break
+        build_data = {}
+        build_data['alerts'] = i['alerts']
+        build_data['latitude'] = i['latitude']
+        build_data['longitude'] = i['longitude']
+        build_data['timezone'] = i['timezone']
+        build_data['weather_data'] = i['weather_data'][count]
 
-    if check_good:
-        count = 0
-        for i in tmp_data:
-            build_data = {}
-            build_data['alerts'] = i['alerts']
-            build_data['latitude'] = i['latitude']
-            build_data['longitude'] = i['longitude']
-            build_data['timezone'] = i['timezone']
-            build_data['weather_data'] = i['weather_data'][count]
-
-            weather_data.append(build_data)
-            count += 1
+        weather_data.append(build_data)
+        count += 1
 
     return weather_data
 
@@ -128,7 +155,6 @@ def base64ToString(b):
 
 def buildTransId():
     # build well defined session handler.
-
     ip_addr = request.remote_addr
     minute = int((datetime.datetime.now()).strftime("%M"))
     dt = (datetime.datetime.now()).strftime("%d%m%Y%H%M%S%f")

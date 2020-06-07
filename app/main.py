@@ -10,20 +10,6 @@ app = connexion.App(__name__, specification_dir="./")
 
 fileConfig('logging.cfg')
 
-'''
-# Check env var tp find app level
-TS_ENV = os.environ.get('TS_ENV_VAR')
-if TS_ENV == "DEV":
-    app.config.from_object('config.DevConfig')
-elif TS_ENV == "TEST":
-    app.config.from_object('config.TestConfig')
-elif TS_ENV == "PROD":
-    app.config.from_object('config.ProdConfig')
-else:
-    # treat like DEV
-    app.config.from_object('Config.DevConfig')
-'''
-
 # create app config for /ts-main
 app.add_api('swagger.yml')
 
