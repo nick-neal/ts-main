@@ -134,7 +134,7 @@ def parseWeatherData(tmp_data, trans_id):
     count = 0
     for i in tmp_data:
         build_data = {}
-        build_data['alerts'] = i['alerts']
+        #build_data['alerts'] = i['alerts']
         build_data['latitude'] = i['latitude']
         build_data['longitude'] = i['longitude']
         build_data['timezone'] = i['timezone']
