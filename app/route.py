@@ -173,8 +173,8 @@ def base64ToString(b):
 def buildTransId():
     # build well defined session handler.
     ip_addr = request.remote_addr
-    minute = int((datetime.datetime.now()).strftime("%M"))
-    dt = (datetime.datetime.now()).strftime("%d%m%Y%H%M%S%f")
+    minute = int((datetime.now()).strftime("%M"))
+    dt = (datetime.now()).strftime("%d%m%Y%H%M%S%f")
     convstr = f'{ip_addr}{dt}'
 
     return (hashlib.sha256(convstr.encode()).hexdigest())
