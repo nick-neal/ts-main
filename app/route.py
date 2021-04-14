@@ -2,7 +2,8 @@ from flask import request, abort, make_response, jsonify
 import logging
 import requests
 import hashlib
-import datetime
+from datetime import datetime, timezone
+import time
 from requests.exceptions import HTTPError, ConnectTimeout, ReadTimeout, SSLError
 import base64
 from config.tsurls import TS_GEO_URL, TS_WEATHER_URL
@@ -11,15 +12,15 @@ from config.tsconfig import HTTP_CONNECT_TIMEOUT, HTTP_READ_TIMEOUT
 # initialize logger for app
 logger = logging.getLogger(__name__)
 
-# store URL params
-START_TIME = None # this will be the start of the trip # DEFAULT current time
-REST_HOUR = None # this will be the amount of hours to stop driving # DEFAULT 12
-REST_DURATION = None # this will be the duration of the rest period. # DEFAULT 12
-
 # main function used for API endpoint /ts-main/route/{start_addr}/{end_addr}
 def buildRoute(start_addr,end_addr):
     # create uniquie trans_id
     trans_id = buildTransId()
+
+    # get optional vars
+    start_time = validateDate(request.args.get('start',default='now'))
+    # should come out as the following: YYYY-MM-DDTHH:MM:SSZ+0000
+    # will be converted in to 15 minute segments.
 
     # clean input and log for debug mode
     logger.debug(f'[trans_id: {trans_id}, start_addr: {start_addr}')
@@ -36,13 +37,32 @@ def buildRoute(start_addr,end_addr):
     message = call_ts_geo(clean_start_addr,clean_end_addr,trans_id)
 
     # grab weather data for geo_spacers
-    tmp_weather = []
+    weather_data = []
+    pull_time = start_time
     for i in message['data']['geo_spacers']:
-        tmp_weather.append(call_ts_weather(i[0],i[1],trans_id))
+        weather_data.append(call_ts_weather(i[0],i[1],pull_time,trans_id))
+        pull_time = pull_time + 3600 # add 1 hour to pull_time
 
-    message['data']['weather_data'] = parseWeatherData(tmp_weather, trans_id)
+    message['data']['weather_data'] = weather_data
 
     return message
+
+def validateDate(date_string): #work in storing .tzinfo
+    try:
+        if date_string == 'now':
+            if int(datetime.now().strftime("%M")) <= 30: # find a way to set a cookie for UTC offset of user
+                # give current hour 
+                return int(datetime.strptime(datetime.now().strftime("%Y-%m-%dT%H:00:00Z"),"%Y-%m-%dT%H:%M:%SZ").timestamp())
+            else:
+                # give next hour
+                return int((datetime.strptime(datetime.now().strftime("%Y-%m-%dT%H:00:00Z"),"%Y-%m-%dT%H:%M:%SZ").timestamp()) + 3600)
+
+        else: # add logic to check for times before now.
+            input_time = datetime.strptime(date_string,"%Y-%m-%dT%H:%M:%SZ%z")
+            input_time = input_time.replace(minute=0,second=0)
+            return int(input_time.timestamp())
+    except ValueError:
+        return -1
 
 def cleanInput(addr):
     return addr.strip().replace(" ","+")
@@ -85,10 +105,10 @@ def call_ts_geo(start_addr,end_addr,trans_id):
 
     return message
 
-def call_ts_weather(lat,lon,trans_id):
+def call_ts_weather(lat,lon,pull_time,trans_id):
     message = {}
     message['status'] = 'EMPTY'
-    full_url = f'{TS_WEATHER_URL}/{lat}/{lon}/{trans_id}'
+    full_url = f'{TS_WEATHER_URL}/{lat}/{lon}/{pull_time}/{trans_id}'
     service = "/ts-weather/routeForecast"
     logger.info(f'Calling {service} API [trans_id: {trans_id}]')
 
@@ -134,7 +154,6 @@ def parseWeatherData(tmp_data, trans_id):
     count = 0
     for i in tmp_data:
         build_data = {}
-        #build_data['alerts'] = i['alerts']
         build_data['latitude'] = i['latitude']
         build_data['longitude'] = i['longitude']
         build_data['timezone'] = i['timezone']
